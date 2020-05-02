@@ -13,10 +13,10 @@ data = json.loads(response.read())
 men= {}
 women= {}
 unknown = {}
-m = []
-w = []
-u = []
-t = []
+liste_m = []
+liste_w = []
+liste_u = []
+liste_t = []
 
 #On analyse le data qu'on a récuperé pour en sortir 3 dictionnaires qui ont comme clés les 
 #dates et comme valeurs une liste de liste des déces en fct du sex on passe d'un dict à un 
@@ -43,17 +43,20 @@ def analyse(data):
                     unknown[date].append(data[n]["DEATHS"])
 
     for value in men.values():
-        m.append(sum(value))
+        liste_m.append(sum(value))
     for value in women.values():
-        w.append(sum(value))
+        liste_w.append(sum(value))
     for value in unknown.values():
-        u.append(sum(value))
-    for n in range(len(m)):
-        t.append(m[n]+w[n]+u[n]) 
-    return(m,w,u,t,men,women,unknown)
+        liste_u.append(sum(value))
+  
+    return(liste_m,liste_w,liste_u,men,women,unknown)
     
 analyse(data)
 #On construit la figure :
+m = np.array(liste_m)                 #On transforme les listes en tableaux à 1 dimension.
+w = np.array(liste_w)
+u = np.array(liste_u)
+t = np.array(m+w+u)                   #On ajoute les 3 "vecteurs" ensemble pour avoir le total.
 
 legende_x = list(men.keys())    #Met toutes les dates dans une nouvelle liste dans l'ordre.
 width = 0.9                     #On prédefini l'épaisseur de chaque bar.
