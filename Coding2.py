@@ -55,22 +55,29 @@ def analyse(data):
 analyse(data)
 #On construit la figure :
 
-legende_x = list(men.keys())
-width = 0.9
-x = np.arange(len(legende_x))
-fig, axes = plt.subplots()
+legende_x = list(men.keys())    #Met toutes les dates dans une nouvelle liste dans l'ordre.
+width = 0.9                     #On prédefini l'épaisseur de chaque bar.
+x = np.arange(len(legende_x))   #On stock les locations des labels pour l'axe X dans un tableau à 1 dimension.
+fig, axes = plt.subplots(2)     #On crée une figure et 
 
-axes.bar(x - width/3 , m, width/3, label='Men', align='center',color="blue")
-axes.bar(x , w, width/3, label='Women', align='center',color="pink")
-axes.bar(x + width/3 , u, width/3, label='Unknown', align='center',color="yellow")
-axes.plot(x , t, label='Total',color="red")
-axes.set_ylabel('Deaths')
-axes.set_xlabel('Date ')
-axes.set_title("Victimes du Covid-19 en Belgique au cours du temps ")
-axes.set_xticks(x)
-axes.set_xticklabels(legende_x)
-axes.legend(loc="best")
-plt.xticks(rotation=90)
-fig.set_size_inches(18, 9)
+axes[0].bar(x - width/3 , m, width/3, label='Men', align='center',color="blue")           #On dessine l'evolution des nombres de décès de chaque genre sous forme d'histogramme.
+axes[0].bar(x , w, width/3, label='Women', align='center',color="pink")               
+axes[0].bar(x + width/3 , u, width/3, label='Unknown', align='center',color="yellow")     #On dessine l'evolution des nombres de décès total sous forme de courbe.
+axes[0].set_ylabel('Deaths')                                                           
+axes[0].set_xlabel('Date ') 
+axes[0].set_title("Victimes du Covid-19 en Belgique par rapport à leur sexe " ,fontsize=14, fontweight='bold') #On met le titre avec couleur et taille.
+axes[0].set_xticks(x)                                                                     #On met les points sur l'axes x au nombre des dates.
+axes[0].set_xticklabels(legende_x, rotation = "90")                                       #On nomme les points de l'axes x par les dates. 
+axes[0].legend(loc="best")                                                                #On met les legendes au meilleur endroits.
 
-plt.show()
+axes[1].plot(x , t, label='Total',color="red")
+axes[1].set_ylabel('Deaths')
+axes[1].set_xlabel('Date ') 
+axes[1].set_title("Evolution du nombre total de morts du Covid-19 en Belgique " ,fontsize=14, fontweight='bold') 
+axes[1].set_xticks(x)
+axes[1].set_xticklabels(legende_x, rotation = "90")
+axes[1].legend(loc="best")
+
+fig.set_size_inches(18, 9)                                                                 #On prédefini la taille de la fenetre qui va afficher la figure.
+plt.subplots_adjust(left=None, bottom=0.14, right=None, top=None, wspace=None, hspace=0.7) #On espace les 2 graphes verticalement pour caler les dates.
+plt.show()                                                                                 #On affiche la figure dans une fenêtre.
