@@ -62,7 +62,7 @@ fig, axes = plt.subplots(2)     #On crée une figure et
 
 axes[0].bar(x - width/3 , m, width/3, label='Men', align='center',color="blue")           #On dessine l'evolution des nombres de décès de chaque genre sous forme d'histogramme.
 axes[0].bar(x , w, width/3, label='Women', align='center',color="pink")               
-axes[0].bar(x + width/3 , u, width/3, label='Unknown', align='center',color="yellow")     #On dessine l'evolution des nombres de décès total sous forme de courbe.
+axes[0].bar(x + width/3 , u, width/3, label='Unknown', align='center',color="yellow")    
 axes[0].set_ylabel('Deaths')                                                           
 axes[0].set_xlabel('Date ') 
 axes[0].set_title("Victimes du Covid-19 en Belgique par rapport à leur sexe " ,fontsize=14, fontweight='bold') #On met le titre avec couleur et taille.
@@ -70,7 +70,7 @@ axes[0].set_xticks(x)                                                           
 axes[0].set_xticklabels(legende_x, rotation = "90")                                       #On nomme les points de l'axes x par les dates. 
 axes[0].legend(loc="best")                                                                #On met les legendes au meilleur endroits.
 
-axes[1].plot(x , t, label='Total',color="red")
+axes[1].plot(x , t, label='Total',color="red")                                            #On dessine l'evolution des nombres de décès total sous forme de courbe.
 axes[1].set_ylabel('Deaths')
 axes[1].set_xlabel('Date ') 
 axes[1].set_title("Evolution du nombre total de morts du Covid-19 en Belgique " ,fontsize=14, fontweight='bold') 
