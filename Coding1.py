@@ -18,7 +18,7 @@ def color_matplot():
     c =  sys.argv[3]    
     rgb= np.array([0.2989, 0.5870, 0.1140])         #Les constantes utilisé pour l'intensité effectif de luminosité d'un pixel.
     color_image = np.dot(img1, rgb)                 #On fait un produit scalaire de l'array de l'image avec l'intensité effectif, 
-    print(color_image)                              #on obtient alors un tableau à 2 dimensions, 
+    print(color_image)                              #on obtient alors un tableau qui presente la luminosité de chaque pixel. 
     plt.imshow(color_image, cmap=plt.get_cmap(c))   #Finalement on fait une image de ça avec la couleur gris.
     plt.show()
 
