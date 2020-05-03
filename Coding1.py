@@ -62,7 +62,6 @@ if sys.argv[1] == "color-matplot" :
     color_matplot()
 if sys.argv[1] == "darker-matplot" :
     darker_matplot()
-
 if sys.argv[1] == "invers-matplot":
     invers_matplot()
 
