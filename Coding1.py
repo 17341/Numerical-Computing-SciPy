@@ -37,12 +37,15 @@ def invers_matplot():
     fig.set_size_inches(10, 7)                                  
     plt.show()
 
+"""
 #With Pillow
 
 def gray_pillow():
     im2 = np.array(Image.open('Picture.jpg').convert('L'))
     img2 = Image.fromarray(im2)
     img2.show()
+if sys.argv[1] == "gray-pillow" :
+    gray_pillow()
 
 #With OpenCV
 
@@ -51,17 +54,15 @@ def gray_cv2():
     gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
     cv2.imshow('Gray image', gray)
     cv2.waitKey(0)
-
-
+if sys.argv[1] == "gray-cv2":
+    gray_cv2()
+"""
 
 if sys.argv[1] == "color-matplot" :
     color_matplot()
 if sys.argv[1] == "darker-matplot" :
     darker_matplot()
-if sys.argv[1] == "gray-pillow" :
-    gray_pillow()
-if sys.argv[1] == "gray-cv2":
-    gray_cv2()
+
 if sys.argv[1] == "invers-matplot":
     invers_matplot()
 
