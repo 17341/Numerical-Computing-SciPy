@@ -2,7 +2,7 @@ import matplotlib.image as mpimg
 import numpy as np
 import matplotlib.pyplot as plt
 from PIL import Image
-import cv2, sys, os
+import cv2, sys
 
 # Transforme l'image en grayscale:
 
@@ -17,10 +17,10 @@ print(img1)                                                     #Donne un tablea
 def color_matplot():
     c =  sys.argv[3]    
     rgb= np.array([0.2989, 0.5870, 0.1140])                     #Les constantes utilisé pour l'intensité effectif de luminosité d'un pixel.
-    color_image = np.dot(img1, rgb)                             #On multiplie chaque valeur rgb de chaque pixel par l'intensité effectif.
-    plt.imshow(np.flipud(color_image), cmap=plt.get_cmap(c))    #Finalement on fait une image de ça avec la couleur gris.
+    color_image = np.dot(img1, rgb)                             #On fait un produit scalaire de l'array de l'image avec l'intensité effectif, 
+    print(color_image)                                          #on obtient alors un tableau à 2 dimensions, 
+    plt.imshow(color_image, cmap=plt.get_cmap(c))               #Finalement on fait une image de ça avec la couleur gris.
     plt.show()
-    print(color_image)
 
 def darker_matplot():
     b =  sys.argv[3]
@@ -33,8 +33,8 @@ def darker_matplot():
 def invers_matplot():
     fig, axes = plt.subplots(2) 
     axes[0].imshow(img1)
-    axes[1].imshow(np.flipud(img1))  
-    fig.set_size_inches(10, 7)                                  #Flipud , flip verticalement
+    axes[1].imshow(np.flipud(img1))                             #Flipud , flip verticalement
+    fig.set_size_inches(10, 7)                                  
     plt.show()
 
 #With Pillow
@@ -53,19 +53,15 @@ def gray_cv2():
     cv2.waitKey(0)
 
 
-try:
-    if sys.argv[1] == "color-matplot" :
-        color_matplot()
-    if sys.argv[1] == "darker-matplot" :
-        darker_matplot()
-    if sys.argv[1] == "gray-pillow" :
-        gray_pillow()
-    if sys.argv[1] == "gray-cv2":
-        gray_cv2()
-    if sys.argv[1] == "invers-matplot":
-        invers_matplot()
-    else : 
-        print("Programm not found, try with : color-matplot;gray-pillow;gray-cv2;invers-matplot;darker-matplot")
-except : 
-    print("Please type a programm name to open your file")
+
+if sys.argv[1] == "color-matplot" :
+    color_matplot()
+if sys.argv[1] == "darker-matplot" :
+    darker_matplot()
+if sys.argv[1] == "gray-pillow" :
+    gray_pillow()
+if sys.argv[1] == "gray-cv2":
+    gray_cv2()
+if sys.argv[1] == "invers-matplot":
+    invers_matplot()
 
