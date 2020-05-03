@@ -7,7 +7,7 @@ b = np.ones(3) # [1. 1. 1.]
 c = np.linspace(1,7,3, endpoint = False) # [1. 3. 5.]
 c = c[c%3 == 0] # [3]
 
-d = np.vdot(a[0],a[1]) # 32(produit scalaire)
+d = np.dot(a[0],a[1]) # 32(produit scalaire)
 d = d/8 # 4 
 
 e = np.array([7,c[0],d]) # [7,3,4]
