@@ -30,11 +30,11 @@ for key in sacs.keys():
 #On met les chiffres dans des tableaux en int:
 liste1 = np.array(liste1).astype("int64")                                       
 liste2 = np.reshape(np.array(liste2),(len(sacs.values()),3)).astype("int64")    
-#Solution la plus rapide et la plus efficace, on obtient une laste avec les résultats dans l'ordre:
+#Solution la plus rapide et la plus efficace, on obtient une liste avec les résultats dans l'ordre:
 start1_time = time.time()                                                       
 result1 = np.linalg.solve(liste2,liste1)         
 print(result1,time.time() - start1_time)
-#Bonne solutionon, obtient une laste avec les résultats dans l'ordre:
+#Bonne solution, on obtient une liste avec les résultats dans l'ordre:
 start2_time = time.time()                                                       
 result2 = np.linalg.inv(liste2).dot(liste1)
 print(result2,time.time() - start2_time)
@@ -43,3 +43,5 @@ start3_time = time.time()
 matrice = np.matrix(liste2)
 result3 = np.dot(matrice.I,liste1)
 print(result3,time.time() - start3_time)
+ 
+

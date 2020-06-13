@@ -10,13 +10,12 @@ url = "https://epistat.sciensano.be/Data/COVID19BE_MORT.json"
 response = urllib.request.urlopen(url)
 data = json.loads(response.read())
 
-men= {}
-women= {}
+men= {}                 #Dictionnaire avec date comme clé et les diff déces par régions
+women= {}               
 unknown = {}
-liste_m = []
+liste_m = []            #Liste des décès totaux par jour dans le bonne ordre
 liste_w = []
 liste_u = []
-liste_t = []
 
 #On analyse le data qu'on a récuperé pour en sortir 3 dictionnaires qui ont comme clés les 
 #dates et comme valeurs une liste de liste des déces en fct du sex on passe d'un dict à un 
@@ -48,9 +47,9 @@ def analyse(data):
         liste_w.append(sum(value))
     for value in unknown.values():
         liste_u.append(sum(value))
-  
-    return(liste_m,liste_w,liste_u,men,women,unknown)
     
+    return(liste_m,liste_w,liste_u,men,women,unknown)
+
 analyse(data)
 #On construit la figure :
 m = np.array(liste_m)                 #On transforme les listes en tableaux à 1 dimension.
@@ -61,7 +60,7 @@ t = np.array(m+w+u)                   #On ajoute les 3 "vecteurs" ensemble pour 
 legende_x = list(men.keys())    #Met toutes les dates dans une nouvelle liste dans l'ordre.
 width = 0.9                     #On prédefini l'épaisseur de chaque bar.
 x = np.arange(len(legende_x))   #On stock les locations des labels pour l'axe X dans un tableau à 1 dimension.
-fig, axes = plt.subplots(2)     #On crée une figure et 
+fig, axes = plt.subplots(2)     #On crée 2 figures et 2 axes associées à celle-ci
 
 axes[0].bar(x - width/3 , m, width/3, label='Men', align='center',color="blue")           #On dessine l'evolution des nombres de décès de chaque genre sous forme d'histogramme.
 axes[0].bar(x , w, width/3, label='Women', align='center',color="pink")               

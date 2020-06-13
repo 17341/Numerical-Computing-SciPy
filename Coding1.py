@@ -6,27 +6,27 @@ import cv2, sys
 
 # Transforme l'image en grayscale:
 
-picture = sys.argv[2]
-im1 = mpimg.imread(picture)
-img1 = np.copy(im1)                                 #On fait une copie de l'original
-print(img1.shape)                                   #Donne le nbr de pixel de l'image , le troisieme nombre est le nombre de couleur 3(rouge,vert,bleu).
+picture = sys.argv[2]                               #Image qu'on veut modifier
+im1 = mpimg.imread(picture)                         #On lit l'image avec matplotlib
+img1 = np.copy(im1)                                 #On fait une copie de l'image original
+print(img1.shape)                                   #C'est un tableau à 3 dimensions(Donne le nbr de pixel de l'image , le troisieme nombre est le nombre de couleur 3(rouge,vert,bleu).)
 print(img1)                                         #Donne un tableau avec les valeurs rgb de chaque pixel, img1[ligne][colonne]
 
 #With matplotlib
 
 def color_matplot():
-    c =  sys.argv[3]    
+    c =  sys.argv[3]                                #On choisit la couleur de notre image transformée
     rgb= np.array([0.2989, 0.5870, 0.1140])         #Les constantes utilisé pour l'intensité effectif de luminosité d'un pixel.
     color_image = np.dot(img1, rgb)                 #On fait un produit scalaire de l'array de l'image avec l'intensité effectif, 
-    print(color_image)                              #on obtient alors un tableau qui presente la luminosité de chaque pixel. 
-    plt.imshow(color_image, cmap=plt.get_cmap(c))   #Finalement on fait une image de ça avec la couleur gris.
+    print(color_image)                              #On obtient alors un tableau qui presente la luminosité de chaque pixel. 
+    plt.imshow(color_image, cmap=plt.get_cmap(c))   #Finalement on fait une image de ça avec la couleur.
     plt.show()
 
 def darker_matplot():
     b =  sys.argv[3]
     for i in range(img1.shape[0]):
         for j in range(img1.shape[1]):
-            img1[i,j] = np.divide(img1[i,j],int(b)) #On divise chaque valeur rgb de chaque pixel par 2.                               
+            img1[i,j] = np.divide(img1[i,j],int(b)) #On divise chaque valeur rgb de chaque pixel par b.                               
     plt.imshow(img1)       
     plt.show()
     
