@@ -11,16 +11,17 @@ from scipy.interpolate import interp1d
 url = "https://epistat.sciensano.be/Data/COVID19BE_tests.json"
 response = urllib.request.urlopen(url)
 data = json.loads(response.read())
-n = sys.argv[1]
+#Choisir le degré(réglé)
+n = int(sys.argv[1])               
 #On crée les listes qu'on va utilisé pour faire nos tableaux
 date = []
 tests = []
-n = 1
+o = 1
 #On remplie les listes avec les valeurs de tests et le comptage des jours
 for j in data:
-    date.append(n)
+    date.append(o)
     tests.append(j['TESTS'])
-    n += 1
+    o += 1
 #On transforme ces listes en tableaux à 1 dimension
 x = np.array(date)
 y = np.array(tests)
@@ -48,5 +49,3 @@ plt.title("Total number of tests performed by days from 2020-03-01 for the Covid
 plt.xlabel("Jours")
 plt.ylabel("Tests")
 plt.show()
-
-

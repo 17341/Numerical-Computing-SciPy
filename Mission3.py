@@ -5,11 +5,12 @@ import sys
 import matplotlib.pyplot as plt
 
 f = sys.argv[1]
+p = sys.argv[2]
+
 ax1 = []
 ax2 = []
 ax3 = []
 ax4 = []
-
 for n in range(int(f)):
     result1 = [[0 for i in range(n)] for j in range(n)]
     m1 = [[random.randint(1,100) for i in range(n)] for j in range(n)]
@@ -32,25 +33,32 @@ for n in range(int(f)):
         t2 = time.time() - start2_time
         ax2.append(t2)
     
-    def bas_matr_add():
-        start3_time = time.time()
-        for i in range(len(m1)):
-            for j in range(len(m1[0])):
-                result1[i][j] = m1[i][j] + m2[i][j]
-        t3 = time.time() - start3_time
-        ax3.append(t3)
-
-    def num_matr_add():
-        start4_time = time.time()
-        np.add(m3,m4)
-        t4 = time.time() - start4_time
-        ax4.append(t4)
-
     bas_matr_mult()  
     num_matr_mult()
+
+for n in range(int(p)):
+    result2 = [[0 for i in range(n)] for j in range(n)]
+    m5 = [[random.randint(1,100) for i in range(n)] for j in range(n)]
+    m6 = [[random.randint(1,100) for i in range(n)] for j in range(n)]
+    m7 = (np.array(m5)).astype("int64")
+    m8 = (np.array(m6)).astype("int64")
+    def bas_matr_add():
+        start3_time = time.time()
+        for i in range(len(m5)):
+            for j in range(len(m5[0])):
+                result2[i][j] = m5[i][j] + m6[i][j]
+        t3 = time.time() - start3_time
+        ax3.append(t3)
+    def num_matr_add():
+        start4_time = time.time()
+        np.add(m7,m8)
+        t4 = time.time() - start4_time
+        ax4.append(t4)
+    
     bas_matr_add()
-    num_matr_add()
-   
+    num_matr_add() 
+    
+  
 fig, axes = plt.subplots(2)
 
 axes[0].plot(ax1,color = "red",label="With Lists")

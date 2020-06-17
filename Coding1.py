@@ -27,8 +27,8 @@ def darker_matplot():
     for i in range(img1.shape[0]):
         for j in range(img1.shape[1]):
             img1[i,j] = np.divide(img1[i,j],int(b)) #On divise chaque valeur rgb de chaque pixel par b.                               
-    plt.imshow(img1)       
-    plt.show()
+    plt.imshow(img1)                                #Dessine l'image
+    plt.show()                                      #Affiche l'image
     
 def invers_matplot():
     fig, axes = plt.subplots(2) 

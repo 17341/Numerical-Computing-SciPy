@@ -57,7 +57,9 @@ w = np.array(liste_w)
 u = np.array(liste_u)
 t = np.array(m+w+u)                   #On ajoute les 3 "vecteurs" ensemble pour avoir le total.
 
-legende_x = list(men.keys())    #Met toutes les dates dans une nouvelle liste dans l'ordre.
+legende_x = list(men.keys()) 
+for n in range(len(legende_x)):
+    legende_x[n] = legende_x[n][5:]        #Met toutes les dates dans une nouvelle liste dans l'ordre.
 width = 0.9                     #On prédefini l'épaisseur de chaque bar.
 x = np.arange(len(legende_x))   #On stock les locations des labels pour l'axe X dans un tableau à 1 dimension.
 fig, axes = plt.subplots(2)     #On crée 2 figures et 2 axes associées à celle-ci
